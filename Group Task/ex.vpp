@@ -1,0 +1,27 @@
+class Book
+types
+
+	Date::  day: nat1
+			month: seq of char
+			year : nat1;
+			
+instance variables
+
+		returnDate: Date;
+		borrowDate: Date;
+		todayDate: Date;
+		
+		
+operations
+		public getDate: nat1 *seq of char *nat1 ==>Date
+		getDate(day,month,year)==
+		(
+			returnDate := mk_date(07,Nov,2018);
+			return ruturnDate;
+		
+		)
+		
+		pre borrowDate = todayDate
+		post returnDate > borrowDate
+		
+		end Book

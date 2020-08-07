@@ -1,0 +1,60 @@
+class ATM
+	instance variables
+		bank : Bank;
+	
+	operations
+		withdraw : int * int * int ==> int
+		withdraw (amount, id, pin) ==
+		(
+		  dcl account : Account;
+		  dcl balance : int;
+		  account := bank . getAccountByIdPin (id, pin);
+		  balance := account . withdraw (amount);
+		  return balance
+		);
+		
+		deposit : int * int * int ==> int
+		deposit (amount, id, pin) ==
+		(
+			dcl account : Account;
+			dcl balance : int;
+			account := bank . getAccountByIdPin(id, pin);
+			balance := account . deposit (amount);
+			return balance
+		);
+		
+		checkBalance : int * int ==> int
+		checkBalance (id, pin) ==
+		(
+		  dcl account : Account;
+		  dcl balance : int;
+		  account := bank . getAccountByIdPin (id, pin);
+		  balance := account . getBalance (balance);
+		  return balance
+		);
+		
+		transfer : int * int * int * int ==> ()
+		transfer (amount, id1, pin1, id2) ==
+		(
+		 dcl account2 : Account;
+		 dcl balance:int, balance1 : int;
+		 balance1 := withdraw (amount, id1, pin1);
+		 account2 := bank . getAccountById (id2);
+		 balance := account2 .deposit (amount);
+		 return;
+		);
+		chngPin : int*int ==> int
+		chngPin(oldPin,newPin)==
+		(
+			dcl oldPin: int;
+			dcl newPin: int;
+			if oldPin <> newPin then
+			(
+				return newPin
+			);	
+			return oldPin
+			
+		
+		)
+		
+	end ATM
