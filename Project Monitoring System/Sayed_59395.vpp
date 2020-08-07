@@ -1,0 +1,83 @@
+--***********************************************
+--*        TME4013- Formal Methods (G2)         *
+--*        Abu Sayed (59395)                    *
+--*        Assignment (20%)                     *
+--***********************************************
+
+--******* Beggining of class for Monitoring Projects **************************
+
+class MonitoringProject
+
+
+--******* Intance Variables Definitions *********************
+
+instance variables
+
+		public titleOfProject: seq of char;
+		public typeOfProject: seq of char;
+		public startDateOfProject: date;
+		public endDateOfProject: date;
+		public projectActivities: activities;
+		
+		public activityName: activities;
+		public activityDescription: seq of char;
+		public activityDate: date;
+		public activityPlace: address;
+		public activityAttendance: attendance;
+
+		public SpeakerOrTrainerName: seq of char;
+		public SpeakerOrTrainerOrganization: seq of char;
+		public SpeakerOrTrainerFees: real;
+		public SpeakerOrTrainerTravelDetails: seq of char;
+		public SpeakerOrTrainerAccomodationDetails: address;
+
+
+--******* Type Definitions ************************
+types
+		public date = nat1*seq of char*nat1;           --Generate Date Format (dd/mm/yy)
+		public address= nat1*seq of char* seq of char;
+		public activities = <Development> | <Training> | <Seminar> | <Workshop> | <Meeting> | <Etc>;
+		public attendance= nat;
+
+
+--******* Operation Definitions *********************
+operations
+
+		public ViewProjectRecord: seq of char*seq of char* nat1*seq of char*nat1*nat1*seq of char*nat1*activities ==>()
+		ViewProjectRecord(pro_name,pro_type,pro_startD,startM,startY,pro_endD,endM,endY,pro_activities)==
+		(
+			titleOfProject := pro_name;
+			typeOfProject := pro_type;
+			startDateOfProject := mk_(pro_startD , startM , startY);
+			endDateOfProject := mk_(pro_endD , endM , endY);
+			projectActivities := pro_activities;
+		);
+
+		public ViewSpeakerOrTrainerRecord: seq of char*seq of char*real*seq of char*address ==> ()
+		ViewSpeakerOrTrainerRecord(dem_name, dem_org, dem_fees, dem_travel, dem_accom)==
+		(
+			SpeakerOrTrainerName:= dem_name;
+			SpeakerOrTrainerOrganization := dem_org;
+			SpeakerOrTrainerFees := dem_fees;
+			SpeakerOrTrainerTravelDetails := dem_travel;
+			SpeakerOrTrainerAccomodationDetails := dem_accom;
+		);
+
+		public ViewActivityRecord: activities*seq of char*nat1*seq of char*nat1*address*attendance ==> ()
+		ViewActivityRecord(act_name, act_description, act_dateD, act_dateM, act_dateY, act_place, act_attendance) ==
+		(
+			activityName := act_name;
+			activityDescription := act_description;
+			activityDate:= mk_(act_dateD, act_dateM, act_dateY);
+			activityPlace := act_place;
+			activityAttendance := act_attendance;
+			
+			if activityName = <Training> 
+			then ViewSpeakerOrTrainerRecord(SpeakerOrTrainerName, SpeakerOrTrainerOrganization, SpeakerOrTrainerFees, SpeakerOrTrainerTravelDetails, SpeakerOrTrainerAccomodationDetails);
+			
+			if activityName = <Seminar>
+			then ViewSpeakerOrTrainerRecord(SpeakerOrTrainerName, SpeakerOrTrainerOrganization, SpeakerOrTrainerFees, SpeakerOrTrainerTravelDetails, SpeakerOrTrainerAccomodationDetails);
+		);
+
+
+end MonitoringProject
