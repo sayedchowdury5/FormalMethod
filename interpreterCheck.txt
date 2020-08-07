@@ -1,0 +1,6 @@
+create a:= new MonitoringProject()
+print a.ViewProjectRecord ("sayed", "fyp", 25, "November", 2019, 26, "November", 2019, "Training")
+
+print a.ViewActivityRecord("sayed", "fyp", 25, "November", 2019, "unimas", "Dhalia")
+
+print a.ViewSpeakerOrTrainerRecord ("sayed", "fyp", "150.00", "jdhjdhfjhd", "Training")
