@@ -1,0 +1,41 @@
+class Account
+	instance variables
+		public id : int;
+		public pin: int;
+		public balance : int;
+		public balance1:int;
+        public amount:int;
+	operations
+	    setBalance : int ==> int
+		setBalance (balance) == 
+		(
+		  dcl balance1 : int;
+		  balance1 := balance;
+		);
+		public getBalance : int ==> int
+		getBalance (balance) ==
+		(
+			return balance;
+		);
+		public withdraw : int ==> int
+		 withdraw (amount) == 
+		( dcl amount : int;
+		  if amount <= balance then 
+		  (
+		    dcl balance1 : int;
+		    balance1 := balance - amount;
+		    setBalance (balance1)
+		  );
+		  return balance1
+		);
+
+		public deposit : int ==>int 
+		deposit (amount) == 
+			(dcl amount:int, balance1 : int ;
+			 balance1 := balance + amount;
+			 setBalance (balance1);
+			 return balance
+			);
+end Account
+
+
